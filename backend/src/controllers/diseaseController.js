@@ -13,14 +13,11 @@ exports.detectDisease = async (req, res, next) => {
     // Run AI prediction directly on the image buffer for speed and privacy
     const prediction = await aiService.predictDisease(processed.buffer, crop_type);
 
-    const locationPoint =
-      lat && lng ? `POINT(${parseFloat(lng)} ${parseFloat(lat)})` : null;
-
     const result = await db.query(
-      `INSERT INTO detections (user_id, image_url, disease_name, confidence, crop_type, location)
-       VALUES ($1, $2, $3, $4, $5, $6)
+      `INSERT INTO detections (user_id, image_url, disease_name, confidence, crop_type, location_lat, location_lng)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING id, image_url, disease_name, confidence, crop_type, created_at`,
-      [userId, processed.secureUrl, prediction.disease_name, prediction.confidence, crop_type || null, locationPoint]
+      [userId, processed.secureUrl, prediction.disease_name, prediction.confidence, crop_type || null, lat || null, lng || null]
     );
 
     res.status(201).json({
@@ -43,7 +40,7 @@ exports.getHistory = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const result = await db.query(
-      `SELECT id, image_url, disease_name, confidence, crop_type, created_at
+      `SELECT id, image_url, disease_name, confidence, crop_type, created_at, location_lat, location_lng
        FROM detections
        WHERE user_id = $1
        ORDER BY created_at DESC`,

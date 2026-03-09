@@ -13,8 +13,8 @@ exports.getNearbyShops = async (req, res, next) => {
 
     const result = await db.query(
       `SELECT id, name, address, phone_number,
-              ST_Y(location::geometry) AS lat,
-              ST_X(location::geometry) AS lng
+              location_lat AS lat,
+              location_lng AS lng
        FROM shops`
     );
 
@@ -42,8 +42,8 @@ exports.getShopById = async (req, res, next) => {
     const { id } = req.params;
     const result = await db.query(
       `SELECT id, name, address, phone_number,
-              ST_Y(location::geometry) AS lat,
-              ST_X(location::geometry) AS lng
+              location_lat AS lat,
+              location_lng AS lng
        FROM shops
        WHERE id = $1`,
       [id]
