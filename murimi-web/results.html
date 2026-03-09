@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Results - Murimi</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c5926",
+                        "background-light": "#f8faf8",
+                        "background-dark": "#0f140f",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .glass-card {
+            background: rgba(22, 29, 21, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .animate-pop-in {
+            animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #2c5926 0%, #3d7a35 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex min-h-screen w-full flex-col pb-32">
+        <!-- Header -->
+        <div class="fixed top-0 left-0 right-0 p-6 flex justify-between items-center z-50">
+            <a href="index.html"
+                class="size-12 glass-card rounded-2xl flex items-center justify-center text-primary transition-all active:scale-90">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <div class="px-4 py-2 pb-24">
+                <div class="bg-primary/5 dark:bg-primary/10 p-5 rounded-3xl border-l-4 border-primary mb-6 card-shadow animate-fade-in"
+                    style="animation-delay: 0.1s;">
+                    <h3 class="text-primary font-bold text-lg mb-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined">info</span> <span data-t="symptoms">Symptoms</span>
+                    </h3>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed" data-t="symptoms_desc">
+                        Look for broken, yellowish to white streaks that run parallel to the leaf veins. Streaks are
+                        usually uniform in width and distributed throughout the leaf surface, starting from the base.
+                    </p>
+                </div>
+                <div class="mb-6">
+                    <h3 class="text-slate-900 dark:text-slate-100 font-bold text-lg mb-3 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">healing</span> <span
+                            data-t="treatment_steps">Treatment Steps</span>
+                    </h3>
+                    <div class="space-y-3">
+                        <div
+                            class="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                            <span class="material-symbols-outlined text-primary">check_circle</span>
+                            <p class="text-sm" data-t="treatment_step_1">Identify and remove infected plants immediately
+                                to prevent further
+                                spread.</p>
+                        </div>
+                        <div
+                            class="flex items-start gap-3 bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                            <span class="material-symbols-outlined text-primary">check_circle</span>
+                            <p class="text-sm" data-t="treatment_step_2">Apply recommended systemic insecticides to
+                                control leafhopper
+                                populations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 mb-8 animate-fade-in" style="animation-delay: 0.2s;">
+                    <a href="shops.html"
+                        class="w-full premium-gradient hover:opacity-90 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-primary/20"
+                        data-t="find_nearby_shops">
+                        <span class="material-symbols-outlined">storefront</span>
+                        Find Nearby Shops
+                    </a>
+                    <a href="history.html"
+                        class="w-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-4 rounded-2xl flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700 transition-all hover:bg-slate-200 active:scale-95"
+                        data-t="save_to_history">
+                        <span class="material-symbols-outlined">bookmark</span>
+                        Save to History
+                    </a>
+                </div>
+            </div>
+            </main>
+
+            <nav class="fixed bottom-0 left-0 right-0 glass-nav px-6 pb-8 pt-4 flex justify-between items-center z-50">
+                <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                    href="index.html">
+                    <span class="material-symbols-outlined">home</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider">Home</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                    href="shops.html">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider">Shop</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                    href="knowledge.html">
+                    <span class="material-symbols-outlined">menu_book</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider">Knowledge</span>
+                </a>
+                <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                    href="profile.html">
+                    <span class="material-symbols-outlined">person</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider">Profile</span>
+                </a>
+            </nav>
+
+            <!-- Language Menu Modal -->
+            <div id="lang-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-end justify-center">
+                <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-t-3xl p-6 pb-12">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold" data-t="select_language">Select Language</h3>
+                        <button id="close-lang-modal" class="p-2 text-slate-400 hover:text-slate-900">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <button
+                            class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50"
+                            data-lang="en">
+                            <span class="text-2xl">🇬🇧</span>
+                            <span class="font-semibold">English</span>
+                        </button>
+                        <button
+                            class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50"
+                            data-lang="sn">
+                            <span class="text-2xl">🇿🇼</span>
+                            <span class="font-semibold">Shona</span>
+                        </button>
+                        <button
+                            class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50"
+                            data-lang="nd">
+                            <span class="text-2xl">🇿🇼</span>
+                            <span class="font-semibold">Ndebele</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="app.js"></script>
+</body>
+
+</html>

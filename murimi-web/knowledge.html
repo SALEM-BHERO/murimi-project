@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c5926",
+                        "background-light": "#f8faf8",
+                        "background-dark": "#0f140f",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2rem" },
+                },
+            },
+        }
+    </script>
+    <title>Murimi Knowledge Base</title>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .glass-card {
+            background: rgba(22, 29, 21, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <header class="p-8 pb-4 flex justify-between items-center">
+            <h1 class="text-3xl font-black tracking-tight" data-t="knowledge">Murimi Knowledge</h1>
+            <div class="flex items-center gap-2">
+                <button id="lang-menu-btn"
+                    class="size-10 glass-card rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">language</span>
+                </button>
+                <button class="size-10 glass-card rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[20px]">search</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="px-6 pb-32 space-y-8">
+            <!-- Featured Article -->
+            <section class="animate-slide-up stagger-1">
+                <div class="glass-card rounded-[2.5rem] overflow-hidden group transition-all hover:scale-[1.01]">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1530519729491-acf509938550?fit=crop&q=80&w=800"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+                            <div
+                                class="flex items-center gap-2 bg-primary/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-black uppercase tracking-widest">
+                                <span class="material-symbols-outlined text-xs">stars</span>
+                                <span data-t="featured_article">Featured Article</span>
+                            </div>
+                            <span class="text-white/80 text-[10px] font-black uppercase tracking-widest">8 min
+                                read</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h2 class="text-2xl font-black mb-3 tracking-tight leading-tight">Maize Planting Guide 2024</h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed mb-6">
+                            Maximize your yield this season with our comprehensive guide tailored for Zimbabwe's unique
+                            soil types.
+                        </p>
+                        <button
+                            class="w-full bg-primary text-white font-black py-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95">
+                            <span data-t="read_more">Read More</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="animate-slide-up stagger-2">
+                <div class="flex justify-between items-end mb-6 px-2">
+                    <h3 class="font-black text-2xl tracking-tight" data-t="categories">Categories</h3>
+                    <button class="text-primary font-bold text-sm" data-t="view_all">View All</button>
+                </div>
+                <div class="flex gap-3 overflow-x-auto no-scrollbar -mx-2 px-2 pb-2">
+                    <div
+                        class="glass-card flex h-12 shrink-0 items-center justify-center gap-x-3 rounded-2xl px-6 border-primary/20 bg-primary/5">
+                        <span class="material-symbols-outlined text-primary text-[20px]"
+                            style="font-variation-settings: 'FILL' 1">potted_plant</span>
+                        <p class="text-primary text-sm font-black uppercase tracking-widest" data-t="soil_health">Soil
+                            Health</p>
+                    </div>
+                    <div class="glass-card flex h-12 shrink-0 items-center justify-center gap-x-3 rounded-2xl px-6">
+                        <span class="material-symbols-outlined text-slate-400 text-[20px]">bug_report</span>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-black uppercase tracking-widest"
+                            data-t="pest_control">Pest Control</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Articles -->
+            <section class="animate-slide-up stagger-3">
+                <h3 class="font-black text-2xl tracking-tight mb-6 px-2" data-t="recent_articles">Recent Articles</h3>
+                <div class="space-y-4">
+                    <div
+                        class="glass-card p-4 rounded-3xl flex items-center gap-5 hover:bg-white dark:hover:bg-slate-800 transition-all cursor-pointer group">
+                        <div
+                            class="size-20 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800">
+                            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?fit=crop&q=80&w=200"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span
+                                    class="bg-amber-100 dark:bg-amber-500/20 text-amber-600 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest">New</span>
+                                <span class="text-slate-400 text-[9px] font-black uppercase tracking-widest">5 min
+                                    read</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 dark:text-white">Low-Cost Drip Irrigation</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav
+            class="fixed bottom-6 left-6 right-6 h-20 glass-card rounded-3xl px-8 flex justify-between items-center z-50 premium-shadow">
+            <a class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-primary transition-all"
+                href="index.html">
+                <span class="material-symbols-outlined text-[26px]">home</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="home">Home</span>
+            </a>
+            <a class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-primary transition-all"
+                href="shops.html">
+                <span class="material-symbols-outlined text-[26px]">shopping_bag</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="shop">Shop</span>
+            </a>
+            <a class="flex flex-col items-center gap-1.5 text-primary scale-110 transition-all" href="knowledge.html">
+                <span class="material-symbols-outlined text-[26px]"
+                    style="font-variation-settings: 'FILL' 1">menu_book</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="knowledge">Knowledge</span>
+            </a>
+            <a class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-primary transition-all"
+                href="profile.html">
+                <span class="material-symbols-outlined text-[26px]">person</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="profile">Profile</span>
+            </a>
+        </nav>
+
+        <!-- Language Menu Modal -->
+        <div id="lang-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-end justify-center">
+            <div
+                class="relative bg-white dark:bg-slate-800 rounded-3xl overflow-hidden card-shadow mb-8 animate-fade-in">
+                <header
+                    class="bg-white dark:bg-slate-900 glass-header p-4 sticky top-0 z-50 -mx-6 -mt-6 mb-6 rounded-t-3xl">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold" data-t="select_language">Select Language</h3>
+                        <button id="close-lang-modal" class="p-2 text-slate-400 hover:text-slate-900">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                </header>
+                <div class="grid grid-cols-2 gap-4 animate-fade-in" style="animation-delay: 0.1s;">
+                    <button
+                        class="flex flex-col items-center gap-3 p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 card-shadow hover:scale-105 transition-transform"
+                        data-lang="en">
+                        <span class="text-2xl">🇬🇧</span>
+                        <span class="font-semibold">English</span>
+                    </button>
+                    <button
+                        class="flex flex-col items-center gap-3 p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 card-shadow hover:scale-105 transition-transform"
+                        data-lang="sn">
+                        <span class="text-2xl">🇿🇼</span>
+                        <span class="font-semibold">Shona</span>
+                    </button>
+                    <button
+                        class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50"
+                        data-lang="nd">
+                        <span class="text-2xl">🇿🇼</span>
+                        <span class="font-semibold">Ndebele</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

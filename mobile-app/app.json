@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Murimi",
+    "slug": "murimi-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.murimi"
+    },
+    "android": {
+      "package": "com.yourcompany.murimi"
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-image-picker",
+      "expo-location"
+    ]
+  }
+}

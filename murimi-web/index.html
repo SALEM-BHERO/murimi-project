@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Murimi - AI Crop Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c5926",
+                        "background-light": "#f8faf8",
+                        "background-dark": "#0f140f",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
+        }
+
+        .zim-pattern {
+            background-color: #2c5926;
+            background-image: linear-gradient(135deg, rgba(44, 89, 38, 0.95) 0%, rgba(61, 122, 53, 0.95) 100%),
+                url(https://images.unsplash.com/photo-1530519729491-acf509938550?auto=format&fit=crop&q=80&w=2000);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .glass-card {
+            background: rgba(22, 29, 21, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .premium-shadow {
+            box-shadow: 0 20px 40px -15px rgba(44, 89, 38, 0.15);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .scan-pulse {
+            position: relative;
+        }
+
+        .scan-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 2px solid #2c5926;
+            border-radius: 20px;
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- Premium Hero Header -->
+        <header class="zim-pattern pt-12 pb-20 px-6 rounded-b-[3rem] shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+
+            <div class="flex items-center justify-between mb-8 relative z-10">
+                <div class="flex items-center gap-4">
+                    <div class="size-14 rounded-2xl border-2 border-white/30 overflow-hidden bg-white/10 p-0.5">
+                        <img alt="User profile" class="w-full h-full object-cover rounded-[14px]"
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150" />
+                    </div>
+                    <div>
+                        <h1 class="text-white text-3xl font-black tracking-tight leading-tight">Mhoro, Farai</h1>
+                        <p class="text-white/70 text-sm font-medium">Harare, Zimbabwe</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="lang-menu-btn"
+                        class="bg-white/15 hover:bg-white/25 backdrop-blur-md p-2.5 rounded-2xl text-white transition-all">
+                        <span class="material-symbols-outlined text-[22px]">language</span>
+                    </button>
+                    <button
+                        class="bg-white/15 hover:bg-white/25 backdrop-blur-md p-2.5 rounded-2xl text-white transition-all">
+                        <span class="material-symbols-outlined text-[22px]">notifications</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 relative z-10">
+                <div class="bg-white/10 backdrop-blur-xl p-5 rounded-3xl border border-white/20 shadow-xl">
+                    <p class="text-white/60 text-[10px] uppercase tracking-[0.2em] font-black mb-1"
+                        data-t="status_label">Status</p>
+                    <p class="text-white text-xl font-extrabold" data-t="status_value">3 Healthy Farms</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-xl p-5 rounded-3xl border border-white/20 shadow-xl">
+                    <p class="text-white/60 text-[10px] uppercase tracking-[0.2em] font-black mb-1"
+                        data-t="alerts_label">Alerts</p>
+                    <p class="text-white text-xl font-extrabold" data-t="alerts_value">0 Pending</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="px-6 -mt-10 flex-1 relative z-20 pb-32">
+            <!-- Scan Trigger Card -->
+            <div
+                class="glass-card rounded-[2.5rem] p-8 mb-10 premium-shadow animate-slide-up stagger-1 group transition-all hover:scale-[1.01]">
+                <div class="flex items-center gap-6 mb-8">
+                    <div
+                        class="size-16 bg-primary/10 rounded-3xl flex items-center justify-center text-primary shrink-0 shadow-inner group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined"
+                            style="font-size: 36px; font-variation-settings: 'FILL' 1">center_focus_strong</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-black text-2xl tracking-tight" data-t="ai_detection_title">AI Disease Detection
+                        </h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed"
+                            data-t="ai_detection_sub">
+                            Identify pests or diseases instantly with Gemini AI.
+                        </p>
+                    </div>
+                </div>
+                <button id="scan-button"
+                    class="w-full bg-primary hover:bg-primary/90 text-white font-black py-5 rounded-[1.5rem] flex items-center justify-center gap-3 transition-all active:scale-[0.97] shadow-2xl shadow-primary/30 text-lg hover:tracking-wide"
+                    data-t="scan_crop">
+                    <span class="material-symbols-outlined">auto_videocam</span>
+                    Scan Crop
+                </button>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="animate-slide-up stagger-2">
+                <div class="flex justify-between items-end mb-6 px-2">
+                    <h3 class="font-black text-2xl tracking-tight" data-t="recent_detections">Recent Detections</h3>
+                    <button class="text-primary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all"
+                        data-t="view_all">
+                        View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div
+                        class="glass-card p-5 rounded-3xl flex items-center gap-5 hover:bg-white dark:hover:bg-slate-800 transition-all cursor-pointer group active:scale-[0.98]">
+                        <div
+                            class="size-16 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner border border-slate-100 dark:border-slate-800">
+                            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?fit=crop&w=150&h=150"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                alt="Scan result" />
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-extrabold text-lg text-slate-900 dark:text-white" data-t="grey_leaf_spot">
+                                Grey Leaf Spot</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mt-1"
+                                data-t="maize_time">Maize • 10:30 AM</p>
+                        </div>
+                        <div
+                            class="size-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation - Styled like the mobile app -->
+        <nav
+            class="fixed bottom-6 left-6 right-6 h-20 glass-card rounded-3xl px-8 flex justify-between items-center z-50 premium-shadow">
+            <a class="flex flex-col items-center gap-1.5 text-primary scale-110 transition-transform" href="index.html">
+                <span class="material-symbols-outlined text-[26px]"
+                    style="font-variation-settings: 'FILL' 1">home</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="home">Home</span>
+            </a>
+            <a class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-primary transition-all hover:scale-105"
+                href="shops.html">
+                <span class="material-symbols-outlined text-[26px]">shopping_bag</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="shop">Shop</span>
+            </a>
+            <a class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-primary transition-all hover:scale-105"
+                href="knowledge.html">
+                <span class="material-symbols-outlined text-[26px]">menu_book</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="knowledge">Ulwazi</span>
+            </a>
+            <a class="flex flex-col items-center gap-1.5 text-slate-400 hover:text-primary transition-all hover:scale-105"
+                href="profile.html">
+                <span class="material-symbols-outlined text-[26px]">person</span>
+                <span class="text-[9px] font-black uppercase tracking-widest" data-t="profile">Profile</span>
+            </a>
+        </nav>
+
+        <!-- Trilingual Language Modal - Modern Polish -->
+        <div id="lang-modal"
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-6">
+            <div
+                class="bg-white dark:bg-slate-900 w-full max-w-sm rounded-[3rem] p-8 shadow-2xl relative animate-slide-up overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+
+                <div class="flex justify-between items-center mb-8 relative z-10">
+                    <h3 class="text-2xl font-black tracking-tight" data-t="select_language">Language</h3>
+                    <button id="close-lang-modal"
+                        class="size-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-200 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">close</span>
+                    </button>
+                </div>
+
+                <div class="space-y-3 relative z-10">
+                    <button
+                        class="lang-option w-full flex items-center justify-between p-5 rounded-3xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/30 hover:bg-primary/5 transition-all text-left group"
+                        data-lang="en">
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl">🇬🇧</span>
+                            <span class="font-bold text-lg">English</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+                    </button>
+                    <button
+                        class="lang-option w-full flex items-center justify-between p-5 rounded-3xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/30 hover:bg-primary/5 transition-all text-left group"
+                        data-lang="sn">
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl">🇿🇼</span>
+                            <span class="font-bold text-lg">Shona</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+                    </button>
+                    <button
+                        class="lang-option w-full flex items-center justify-between p-5 rounded-3xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/30 hover:bg-primary/5 transition-all text-left group"
+                        data-lang="nd">
+                        <div class="flex items-center gap-4">
+                            <span class="text-2xl">🇿🇼</span>
+                            <span class="font-bold text-lg">Ndebele</span>
+                        </div>
+                        <span
+                            class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

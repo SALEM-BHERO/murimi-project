@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>History - Murimi</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2c5926",
+                        "background-light": "#f8faf8",
+                        "background-dark": "#0f140f",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .glass-card {
+            background: rgba(22, 29, 21, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .active-tab {
+            color: #2c5926;
+            position: relative;
+        }
+
+        .active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: #2c5926;
+            border-radius: 99px;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-primary/10 text-primary">
+    <span class="material-symbols-outlined">search</span>
+    </button>
+    </div>
+    </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto pb-24">
+        <div class="bg-white dark:bg-background-dark">
+            <div class="flex border-b border-primary/10 px-4 gap-8">
+                <a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4"
+                    href="#">
+                    <p class="text-sm font-bold tracking-wide" data-t="all_scans">All Scans</p>
+                </a>
+                <a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4"
+                    href="#">
+                    <p class="text-sm font-medium tracking-wide" data-t="action_needed_tab">Action Needed</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="px-4 py-4">
+            <h3 class="text-slate-900 dark:text-slate-100 text-sm font-bold uppercase tracking-wider mb-3"
+                data-t="today_date">Today,
+                Oct 24</h3>
+            <div
+                class="flex items-center gap-4 bg-white dark:bg-slate-800 p-4 rounded-3xl card-shadow border border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer group">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-2xl size-16 shrink-0 shadow-inner"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAEmIMsP9ja1-aVyeo003cg5YE5XXmoP_dBWzJ3QbmU7IUi8ohhdTNFYrvUqaSncOpSZY8eDVOe-yvxEFvb3p_-DHrdoHLRaMjz-cTKhaUhYnG-fzTx_b0QCn-ReBsbXriSHG0MBSp79ID-NuCTcHpSaJNSp505HaR5eVpPzY79Zhq_s4zD4wkzmbKCk2Ie1ZavLDKzhQDT1VmmhsasEo1Xps4Ocmu4cAa0Cdw0CQeb1Dcx3cYiRV2MKTchwssFHPmehz_P-40RQU0");'>
+                </div>
+                <div class="flex flex-col justify-center flex-1">
+                    <p class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight"
+                        data-t="grey_leaf_spot">Grey Leaf
+                        Spot</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1 uppercase"
+                        data-t="maize_time">Maize •
+                        10:30 AM</p>
+                    <div class="mt-2 flex items-center gap-1.5">
+                        <span class="size-2 rounded-full bg-amber-500"></span>
+                        <span class="text-amber-700 dark:text-amber-500 text-xs font-bold"
+                            data-t="action_needed_status">Action Needed</span>
+                    </div>
+                </div>
+                <div class="shrink-0 text-slate-300">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 glass-nav px-6 pb-8 pt-4 flex justify-between items-center z-50">
+        <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+            href="index.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Home</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+            href="shops.html">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Shop</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+            href="knowledge.html">
+            <span class="material-symbols-outlined">menu_book</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Knowledge</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary transition-colors" href="history.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">history</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider">History</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+            href="profile.html">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider">Profile</span>
+        </a>
+    </nav>
+
+    <!-- Language Menu Modal -->
+    <div id="lang-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-end justify-center">
+        <div
+            class="premium-gradient p-6 rounded-3xl text-white shadow-2xl relative overflow-hidden animate-fade-in w-full max-w-md mb-8 mx-4">
+            <!-- Decorative element -->
+            <div class="absolute -right-10 -top-10 size-40 bg-white/10 rounded-full blur-3xl"></div>
+
+            <div class="flex justify-between items-start relative z-10 mb-6">
+                <h3 class="text-xl font-bold" data-t="select_language">Select Language</h3>
+                <button id="close-lang-modal" class="p-2 text-white/70 hover:text-white">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="space-y-3 relative z-10">
+                <button
+                    class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/10 hover:bg-white/20 transition-colors"
+                    data-lang="en">
+                    <span class="text-2xl">🇬🇧</span>
+                    <span class="font-semibold">English</span>
+                </button>
+                <button
+                    class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/10 hover:bg-white/20 transition-colors"
+                    data-lang="sn">
+                    <span class="text-2xl">🇿🇼</span>
+                    <span class="font-semibold">Shona</span>
+                </button>
+                <button
+                    class="lang-option w-full flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/10 hover:bg-white/20 transition-colors"
+                    data-lang="nd">
+                    <span class="text-2xl">🇿🇼</span>
+                    <span class="font-semibold">Ndebele</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <span class="text-2xl">🇿🇼</span>
+    <span class="font-semibold">Ndebele</span>
+    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
